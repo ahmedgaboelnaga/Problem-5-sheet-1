@@ -7,52 +7,41 @@ int main()
 	//Giving change. Implement a program that directs a cashier how to give change. The program has two inputs: the amount due and the amount received from the customer.
 	//Display the dollars, quarters, dimes, nickels, and pennies that the customer should receive in return. (Student evaluation)
 
-	double total = 0, price = 0, receivedamount = 0, num = 0, changedollar = 0;
+	double num = 0;
+	do{
+		cout << "Enter the number of items: ";
+		cin >> num;
+	}while(num < 0);
 
-	cout << "Enter the number of items: ";
-	cin >> num;
 
 	cout << "Please Enter the price of the items\n";
-	
-	int k = 0;
-
-	while (k < num)
+	double total_price = 0;
+	for (int i = 0; i < num; i++)
 	{
-
+		double price = 0;
+		cout << "Enter the price of the #" << i + 1 << " item: ";
 		cin >> price;
-
-		total = total + price;
-
-		k = k + 1;
+		total_price = total_price + price;
 	}
 
-	cout << "The total Price is: " << total << " dollars" << endl;
+	cout << "The total_price Price is: " << total_price << " dollars" << endl;
 
+	double receivedamount = 0;
+	do{
 	cout << "Enter the received amount: ";
 	cin >> receivedamount;
+	}while (receivedamount < total_price);
 
-	changedollar = receivedamount - total;
+	double change_dollar = receivedamount - total_price;
 
-	cout << "The total change is: " << changedollar << " dollars" << endl;
+	int dollars = change_dollar;
+	int cents = (change_dollar - dollars) * 100;
+	int quarters = cents / 25;
+	int dimes = (cents % 25) / 10;
+	int nickles = ((cents % 25) % 10) / 5;
 
-	int change = 0;
-	change = changedollar * 100;
-
-	int dollar = 100;
-	int quarters = 25;
-	int dimes = 10;
-	int nickels = 5;
-	int pennies = 1;
-
-	cout << "Change is: \n" << change / 100 << " dollars\n";
-	
-	cout << (change % 100) / 25 << " Quarters\n";
-
-	cout << ((change % 100) % 25) / 10 << " dimes\n";
-
-	cout << (((change % 100) % 25) % 10) / 5 << " nickles\n";
-
-	cout << ((((change % 100) % 25) % 10) % 5) / 1 << " pennies" << endl;
+	// Print the change in dollars, quarters, dimes, and nickles
+	cout << "The change: " << dollars << " Dollars,  " << quarters << " Quarters,  " << dimes << " Dimes,  " << nickles << "Nickles" << endl;
 
 	return 0;
 }
